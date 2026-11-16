@@ -52,7 +52,7 @@ jobs:
         # (actions/runner-images#14167), which stalls the go-libp2p p2pd binary
         # download during install. Pin to macos-15 until that is resolved.
         os: [windows-latest, ubuntu-latest, macos-15]
-        node: [lts/*]
+        node: [24] # Node 26 dropped --experimental-transform-types, which the TS tests need
       fail-fast: false
     steps:
       - uses: actions/checkout@v7
@@ -171,7 +171,7 @@ jobs:
       - uses: actions/checkout@v7
       - uses: actions/setup-node@v7
         with:
-          node-version: lts/*
+          node-version: 24
       - uses: ipfs/aegir/actions/cache-node-modules@main
         with:
           directories: ${{ env.CACHE_DIRS }}
